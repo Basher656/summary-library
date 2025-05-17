@@ -1,0 +1,81 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.leftMenu {
+    flex: 1;
+}
+
+.rightMenu {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.menuList,
+.authList {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: 0.2s ease;
+}
+
+.link:hover {
+    color: #1a73e8;
+    background-color: #e0f0ff;
+    border-radius: 6px;
+}
+
+/* עיצוב כפתורי התחברות/הרשמה */
+.authList li a {
+    border: 1px solid #1a73e8;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #1a73e8;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.authList li a:hover {
+    background-color: #1a73e8;
+    color: white;
+}
+
+/* רספונסיביות לנייד */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menuList,
+    .authList {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .rightMenu {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 0.5rem;
+    }
+}

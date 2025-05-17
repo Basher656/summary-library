@@ -1,0 +1,162 @@
+.homePage {
+    background-color: #ffffff;
+    color: #1f2937;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.heroSection {
+    background: linear-gradient(to right, #eff6ff, #fff7ed);
+    padding: 4rem 2rem;
+}
+
+.heroContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (min-width: 1024px) {
+    .heroContainer {
+        flex-direction: row;
+    }
+}
+
+.heroText {
+    flex: 1;
+}
+
+.heroTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.heroTitle span {
+    color: #2563eb;
+}
+
+.heroSubtitle {
+    color: #4b5563;
+    font-size: 1rem;
+    max-width: 36rem;
+    margin: 1rem 0 2rem 0;
+}
+
+.heroButtons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btnPrimary {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.btnPrimary:hover {
+    background-color: #1e3a8a;
+}
+
+.btnSecondary {
+    background-color: white;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.btnSecondary:hover {
+    background-color: #f0f9ff;
+}
+
+.heroImage {
+    flex: 1;
+    max-width: 600px;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.heroImage img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.summariesSection {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+}
+
+.summariesHeader {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.summariesTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.summariesSubtitle {
+    font-size: 1rem;
+    color: #4b5563;
+}
+
+.summariesGrid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+    .summariesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .summariesGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.summaryCard {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.summaryCard:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.summaryCard img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.summaryContent {
+    padding: 1rem;
+    text-align: center;
+}
+
+.summaryTitle {
+    font-weight: 600;
+    font-size: 1rem;
+}

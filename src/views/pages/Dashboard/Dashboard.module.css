@@ -1,0 +1,70 @@
+.dashboardContainer {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: sans-serif;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.cardsRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.card {
+    flex: 1 1 200px;
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+.cardTitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.cardValue {
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.cardChange {
+    font-size: 0.9rem;
+    color: green;
+}
+
+.sectionTitle {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.analyticsSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.chartBox {
+    flex: 1 1 500px;
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+.graphImage {
+    width: 100%;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+}
