@@ -18,6 +18,10 @@
     flex: 1;
 }
 
+.body {
+    background-color: red;
+}
+
 .menuList,
 .authList {
     display: flex;
@@ -42,7 +46,6 @@
     border-radius: 6px;
 }
 
-/* עיצוב כפתורי התחברות/הרשמה */
 .authList li a {
     border: 1px solid #1a73e8;
     border-radius: 6px;
@@ -57,7 +60,6 @@
     color: white;
 }
 
-/* רספונסיביות לנייד */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;

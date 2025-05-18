@@ -11,10 +11,6 @@ import Register from "./views/pages/Auth/Register";
 
 
 
-
-
-
-
 function App() {
   return (
     <Router>
@@ -31,7 +27,12 @@ function App() {
 
       </Routes>
     </Router>
+
+
   );
 }
+
+
+
 
 export default App;

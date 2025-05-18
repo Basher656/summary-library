@@ -21,6 +21,7 @@ function Navbar() {
                 <ul className={styles.menuList}>
                     <li><Link className={styles.link} to="/">Home</Link></li>
 
+
                     {user && (
                         <>
                             <li><Link className={styles.link} to="/courses">Courses</Link></li>
@@ -39,6 +40,8 @@ function Navbar() {
                 </ul>
             </div>
         </nav>
+
+
     );
 }
 
