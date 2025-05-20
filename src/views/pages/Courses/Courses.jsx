@@ -1,31 +1,33 @@
+import { useEffect, useState } from "react";
 import styles from "./Courses.module.css";
 import { Download } from "lucide-react";
-
-const summaries = [
-    {
-        id: 1,
-        title: "Algorithms and Data Structures",
-        format: "PDF",
-        description: "Comprehensive overview of common algorithms and data structures with implementation examples.",
-        date: "April 10, 2023"
-    },
-    {
-        id: 2,
-        title: "Introduction to Programming",
-        format: "DOCX",
-        description: "Basic programming concepts, syntax, and control structures using Python examples.",
-        date: "March 25, 2023"
-    },
-    {
-        id: 3,
-        title: "Computer Architecture",
-        format: "PDF",
-        description: "Overview of computer hardware components, memory systems, and processor architecture.",
-        date: "February 18, 2023"
-    }
-];
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "../../../firebase"; // ודא נתיב נכון
 
 const Courses = () => {
+    const [summaries, setSummaries] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchSummaries = async () => {
+            try {
+                const q = query(collection(db, "summaries"), orderBy("createdAt", "desc"));
+                const snapshot = await getDocs(q);
+                const data = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setSummaries(data);
+            } catch (error) {
+                console.error("Error fetching summaries:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSummaries();
+    }, []);
+
     return (
         <div className={styles.coursePage}>
             <div className={styles.banner}>
@@ -38,21 +40,35 @@ const Courses = () => {
             <section className={styles.content}>
                 <h2 className={styles.title}>Available Summaries</h2>
 
-                {summaries.map((summary) => (
-                    <div key={summary.id} className={styles.card}>
-                        <div className={styles.text}>
-                            <h3>
-                                {summary.title}{" "}
-                                <span className={styles.badge}>{summary.format}</span>
-                            </h3>
-                            <p>{summary.description}</p>
-                            <small>Added: {summary.date}</small>
+                {loading ? (
+                    <p>Loading summaries...</p>
+                ) : summaries.length === 0 ? (
+                    <p>No summaries available yet.</p>
+                ) : (
+                    summaries.map((summary) => (
+                        <div key={summary.id} className={styles.card}>
+                            <div className={styles.text}>
+                                <h3>
+                                    {summary.title}{" "}
+                                    <span className={styles.badge}>{summary.format}</span>
+                                </h3>
+                                <p>{summary.description}</p>
+                                <small>
+                                    Added:{" "}
+                                    {summary.createdAt?.toDate().toLocaleDateString() || "Unknown"}
+                                </small>
+                            </div>
+                            <a
+                                href={summary.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.downloadBtn}
+                            >
+                                <Download size={16} /> Download
+                            </a>
                         </div>
-                        <button className={styles.downloadBtn}>
-                            <Download size={16} /> Download
-                        </button>
-                    </div>
-                ))}
+                    ))
+                )}
             </section>
         </div>
     );

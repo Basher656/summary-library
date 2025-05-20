@@ -1,4 +1,3 @@
-/* login/register links */
 .authLink {
     text-decoration: none;
     color: #1a73e8;
@@ -14,14 +13,12 @@
     color: white;
 }
 
-/* username */
 .username {
     font-weight: bold;
     color: #333;
     padding: 8px 12px;
 }
 
-/* logout button */
 .logoutBtn {
     background: #f44336;
     color: white;
@@ -36,7 +33,6 @@
     background-color: #d32f2f;
 }
 
-/* logout confirmation overlay */
 .confirmOverlay {
     position: fixed;
     top: 0;
@@ -50,7 +46,6 @@
     z-index: 9999;
 }
 
-/* confirmation box */
 .confirmBox {
     background: white;
     padding: 2rem;
@@ -61,7 +56,6 @@
     width: 100%;
 }
 
-/* confirmation buttons */
 .confirmActions {
     display: flex;
     justify-content: space-around;

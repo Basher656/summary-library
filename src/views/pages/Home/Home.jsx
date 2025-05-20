@@ -1,7 +1,20 @@
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../firebase";
+import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
-import { Link } from "react-router-dom";
 
 const Home = () => {
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+        return () => unsubscribe();
+    }, []);
+
     return (
         <div className={styles.homePage}>
             <section className={styles.heroSection}>
@@ -16,12 +29,18 @@ const Home = () => {
                             Save time and gain insights with our comprehensive summary library.
                         </p>
                         <div className={styles.heroButtons}>
-                            <Link to="/courses" className={styles.btnPrimary}>
+                            <button
+                                className={styles.btnPrimary}
+                                onClick={() => navigate(user ? "/courses" : "/login")}
+                            >
                                 Advanced Search
-                            </Link>
-                            <Link to="/upload" className={styles.btnSecondary}>
+                            </button>
+                            <button
+                                className={styles.btnSecondary}
+                                onClick={() => navigate(user ? "/upload" : "/login")}
+                            >
                                 New Summary
-                            </Link>
+                            </button>
                         </div>
                     </div>
 

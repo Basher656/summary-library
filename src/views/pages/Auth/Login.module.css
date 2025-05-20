@@ -50,14 +50,12 @@ button {
 
 .successTitle {
     color: #28a745;
-    /* ירוק מקצועי */
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
 .errorTitle {
     color: #f44336;
-    /* אדום */
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }

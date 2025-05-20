@@ -12,10 +12,11 @@
 .heroContainer {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 6rem;
     align-items: center;
     justify-content: space-between;
 }
+
 
 @media (min-width: 1024px) {
     .heroContainer {
@@ -158,5 +159,13 @@
 
 .summaryTitle {
     font-weight: 600;
+    font-size: 1rem;
+}
+
+.btnPrimary,
+.btnSecondary {
+    display: inline-block;
+    cursor: pointer;
+    border: none;
     font-size: 1rem;
 }
