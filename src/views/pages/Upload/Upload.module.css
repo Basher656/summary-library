@@ -4,18 +4,26 @@
     margin: auto;
     color: #111;
     font-family: Arial, sans-serif;
+    background-color: #ffffffcc;
+    /* לבן שקוף */
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
 }
 
 .title {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
+    color: #2563eb;
+    margin-bottom: 0.25rem;
 }
 
 .subtitle {
     text-align: center;
     color: #555;
     margin-bottom: 2rem;
+    font-size: 1rem;
 }
 
 .uploadForm {
@@ -32,6 +40,7 @@
 .formGroup label {
     margin-bottom: 0.5rem;
     font-weight: 600;
+    color: #333;
 }
 
 .formGroup input,
@@ -41,6 +50,15 @@
     border: 1px solid #ddd;
     border-radius: 0.5rem;
     font-size: 1rem;
+    background-color: #f9fafb;
+    transition: border-color 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+    border-color: #2563eb;
+    outline: none;
 }
 
 .formGroup textarea {
@@ -48,27 +66,14 @@
     resize: vertical;
 }
 
-.uploadBox {
-    border: 2px dashed #cbd5e1;
-    border-radius: 0.75rem;
-    padding: 2rem;
-    text-align: center;
-    color: #666;
-    cursor: pointer;
-}
-
-.uploadBox:hover {
-    background-color: #f9fafb;
-}
-
-.uploadIcon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 0.5rem;
+.formGroup small {
+    color: #888;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
 }
 
 .submitBtn {
-    margin-top: 2rem;
+    margin-top: 1rem;
     background-color: #2563eb;
     color: white;
     font-weight: bold;
@@ -76,8 +81,21 @@
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .submitBtn:hover {
     background-color: #1d4ed8;
+}
+
+.error {
+    color: #dc2626;
+    text-align: center;
+    font-weight: 600;
+}
+
+.success {
+    color: #16a34a;
+    text-align: center;
+    font-weight: 600;
 }

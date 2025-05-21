@@ -52,41 +52,42 @@ function Register() {
         }
     };
 
-    return (
-        <>
-            <form className={styles.form} onSubmit={handleRegister}>
-                <h2>Register</h2>
+        return (
+            <>
+                <form className={styles.form} onSubmit={handleRegister}>
+                    <h2>Register</h2>
 
-                <input type="text" placeholder="First Name" value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)} required />
+                    <input type="text" placeholder="First Name" value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)} required />
 
-                <input type="text" placeholder="Last Name" value={lastName}
-                    onChange={(e) => setLastName(e.target.value)} required />
+                    <input type="text" placeholder="Last Name" value={lastName}
+                        onChange={(e) => setLastName(e.target.value)} required />
 
-                <input type="email" placeholder="Email" value={email}
-                    onChange={(e) => setEmail(e.target.value)} required />
+                    <input type="email" placeholder="Email" value={email}
+                        onChange={(e) => setEmail(e.target.value)} required />
 
-                <input type="password" placeholder="Password" value={password}
-                    onChange={(e) => setPassword(e.target.value)} required />
+                    <input type="password" placeholder="Password" value={password}
+                        onChange={(e) => setPassword(e.target.value)} required />
 
-                <input type="password" placeholder="Confirm Password" value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)} required />
+                    <input type="password" placeholder="Confirm Password" value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)} required />
 
-                <button type="submit">Register</button>
+                    <button type="submit">Register</button>
 
-                {error && <p className={styles.error}>{error}</p>}
-            </form>
+                    {error && <p className={styles.error}>{error}</p>}
+                </form>
 
-            {showModal && (
-                <div className={styles.modalOverlay}>
-                    <div className={styles.modal}>
-                        <h3>Registration Successful!</h3>
-                        <p>A confirmation email has been sent to your inbox.</p>
+
+                {showModal && (
+                    <div className={styles.modalOverlay}>
+                        <div className={styles.modal}>
+                            <h3>Registration Successful!</h3>
+                            <p>A confirmation email has been sent to your inbox.</p>
+                        </div>
                     </div>
-                </div>
-            )}
-        </>
-    );
+                )}
+            </>
+        );
 }
 
 export default Register;

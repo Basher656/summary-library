@@ -37,7 +37,7 @@ function Login() {
     };
 
     return (
-        <>
+        <div className={styles.loginWrapper}>
             <form className={styles.form} onSubmit={handleLogin}>
                 <h2>Login</h2>
                 <input
@@ -72,7 +72,6 @@ function Login() {
                 </div>
             )}
 
-
             {showWelcomeModal && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modal}>
@@ -81,8 +80,7 @@ function Login() {
                     </div>
                 </div>
             )}
-
-        </>
+        </div>
     );
 }
 

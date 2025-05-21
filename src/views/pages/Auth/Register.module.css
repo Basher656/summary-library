@@ -2,29 +2,65 @@
     display: flex;
     flex-direction: column;
     max-width: 400px;
-    margin: 2rem auto;
+    margin: 100px auto;
+    padding: 2rem;
     gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+
+.form h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #ffffff;
+    background-color: #2563eb;
+    padding: 0.6rem 1.8rem;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 0 auto 1.2rem auto;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
 input {
-    padding: 0.5rem;
+    padding: 0.75rem;
     font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 button {
-    padding: 0.5rem;
+    padding: 0.75rem;
+    font-size: 1rem;
     font-weight: bold;
     background-color: #3b82f6;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2563eb;
 }
 
 .error {
-    color: red;
-    margin-top: 1rem;
-    font-weight: bold;
+    color: #e11d48;
+    text-align: center;
+    font-size: 0.95rem;
 }
 
 .modalOverlay {
@@ -33,36 +69,40 @@ button {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 1000;
 }
 
 .modal {
-    background: white;
-    padding: 2rem 3rem;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
     text-align: center;
-    animation: fadeIn 0.3s ease;
+    width: 90%;
+    max-width: 360px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.25s ease;
 }
 
 .modal h3 {
+    color: #22c55e;
+    font-size: 1.6rem;
     margin-bottom: 0.5rem;
-    color: green;
 }
 
 .modal p {
     font-size: 1rem;
-    color: #333;
+    color: #444;
+    margin-bottom: 1rem;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.95);
     }
 
     to {
