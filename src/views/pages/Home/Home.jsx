@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styles from "./Home.module.css";
 
 const Home = () => {
@@ -14,6 +14,29 @@ const Home = () => {
         });
         return () => unsubscribe();
     }, []);
+
+    const courses = [
+        {
+            title: "Computer Science",
+            value: "cs",
+            img: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=60",
+        },
+        {
+            title: "Economics",
+            value: "eco",
+            img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=60",
+        },
+        {
+            title: "Web Development",
+            value: "web",
+            img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=500&q=60",
+        },
+        {
+            title: "Psychology",
+            value: "psy",
+            img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=500&q=60",
+        },
+    ];
 
     return (
         <div className={styles.homePage}>
@@ -62,30 +85,17 @@ const Home = () => {
                 </div>
 
                 <div className={styles.summariesGrid}>
-                    {[
-                        {
-                            title: "Computer Science",
-                            img: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=60",
-                        },
-                        {
-                            title: "Economics",
-                            img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=60",
-                        },
-                        {
-                            title: "Web Development",
-                            img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=500&q=60",
-                        },
-                        {
-                            title: "Psychology",
-                            img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=500&q=60",
-                        },
-                    ].map((item) => (
-                        <div key={item.title} className={styles.summaryCard}>
+                    {courses.map((item) => (
+                        <Link
+                            key={item.value}
+                            to={`/courses?course=${item.value}`}
+                            className={styles.summaryCard}
+                        >
                             <img src={item.img} alt={item.title} />
                             <div className={styles.summaryContent}>
                                 <h4 className={styles.summaryTitle}>{item.title}</h4>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </section>
