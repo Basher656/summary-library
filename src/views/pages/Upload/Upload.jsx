@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Upload.module.css";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../../../firebase";
+import { db, auth } from "../../../firebase";
 
 const Upload = () => {
     const [title, setTitle] = useState("");
@@ -19,10 +19,13 @@ const Upload = () => {
         }
 
         try {
+            const currentUser = auth.currentUser;
+
             await addDoc(collection(db, "summaries"), {
                 title,
                 course,
                 description,
+                uploader: currentUser?.email || "unknown",
                 createdAt: serverTimestamp()
             });
 

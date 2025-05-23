@@ -2,13 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./Courses.module.css";
 import { Download } from "lucide-react";
 import {
-    collection,
-    getDocs,
-    query,
-    orderBy,
-    doc,
-    deleteDoc,
-    getDoc
+    collection, getDocs, query, orderBy, doc, deleteDoc, getDoc, addDoc, serverTimestamp
 } from "firebase/firestore";
 import { db, auth } from "../../../firebase";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -26,14 +20,8 @@ const Courses = () => {
     const [loading, setLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
 
-    const courseNames = {
-        cs: "Computer Science",
-        eco: "Economics",
-        web: "Web Development",
-        psy: "Psychology"
-    };
-
-    const handleDownloadTextAsPDF = (title, description) => {
+    const handleDownloadTextAsPDF = (title, description, summaryId) => {
+        logDownload(summaryId);
         const doc = new jsPDF();
         doc.setFont("Helvetica");
         doc.setFontSize(16);
@@ -46,12 +34,22 @@ const Courses = () => {
 
     const handleDelete = async (id) => {
         if (!window.confirm("Are you sure you want to delete this summary?")) return;
-
         try {
             await deleteDoc(doc(db, "summaries", id));
             setSummaries((prev) => prev.filter((s) => s.id !== id));
         } catch (error) {
             console.error("Error deleting summary:", error);
+        }
+    };
+
+    const logDownload = async (summaryId) => {
+        try {
+            await addDoc(collection(db, "downloads"), {
+                summaryId,
+                timestamp: serverTimestamp()
+            });
+        } catch (error) {
+            console.error("Failed to log download:", error);
         }
     };
 
@@ -66,9 +64,13 @@ const Courses = () => {
                     ...doc.data()
                 }));
 
-                const filtered = selectedCourse
+                let filtered = selectedCourse
                     ? data.filter((s) => s.course === selectedCourse)
                     : data;
+
+                if (!isAdmin) {
+                    filtered = filtered.filter((s) => s.status === "Approved");
+                }
 
                 setSummaries(filtered);
             } catch (error) {
@@ -79,7 +81,7 @@ const Courses = () => {
         };
 
         fetchSummaries();
-    }, [selectedCourse]);
+    }, [selectedCourse, isAdmin]);
 
     useEffect(() => {
         const checkAdmin = async (user) => {
@@ -155,6 +157,11 @@ const Courses = () => {
                                     Added:{" "}
                                     {summary.createdAt?.toDate().toLocaleDateString() || "Unknown"}
                                 </small>
+                                {isAdmin && (
+                                    <div>
+                                        <small>Status: {summary.status || "Pending"}</small>
+                                    </div>
+                                )}
                             </div>
 
                             {summary.url ? (
@@ -162,6 +169,7 @@ const Courses = () => {
                                     href={summary.url}
                                     download={`${summary.title}.pdf`}
                                     className={styles.downloadBtn}
+                                    onClick={() => logDownload(summary.id)}
                                 >
                                     <Download size={16} /> Download PDF
                                 </a>
@@ -169,7 +177,11 @@ const Courses = () => {
                                 <button
                                     className={styles.downloadBtn}
                                     onClick={() =>
-                                        handleDownloadTextAsPDF(summary.title, summary.description)
+                                        handleDownloadTextAsPDF(
+                                            summary.title,
+                                            summary.description,
+                                            summary.id
+                                        )
                                     }
                                 >
                                     <Download size={16} /> Download as PDF
