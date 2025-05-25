@@ -76,5 +76,17 @@
         width: 100%;
         justify-content: flex-start;
         margin-top: 0.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .authList li {
+        width: 100%;
+    }
+
+    .authList li a {
+        display: block;
+        width: 100%;
+        text-align: center;
     }
 }

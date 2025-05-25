@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 
 const Home = () => {
@@ -37,6 +37,14 @@ const Home = () => {
             img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=500&q=60",
         },
     ];
+
+    const handleCourseClick = (course) => {
+        if (!user) {
+            alert("Please log in to access this course.");
+            return;
+        }
+        navigate(`/courses?course=${course}`);
+    };
 
     return (
         <div className={styles.homePage}>
@@ -86,16 +94,19 @@ const Home = () => {
 
                 <div className={styles.summariesGrid}>
                     {courses.map((item) => (
-                        <Link
+                        <div
                             key={item.value}
-                            to={`/courses?course=${item.value}`}
                             className={styles.summaryCard}
+                            onClick={() => handleCourseClick(item.value)}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => e.key === 'Enter' && handleCourseClick(item.value)}
                         >
                             <img src={item.img} alt={item.title} />
                             <div className={styles.summaryContent}>
                                 <h4 className={styles.summaryTitle}>{item.title}</h4>
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
             </section>

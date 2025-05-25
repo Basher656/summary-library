@@ -68,7 +68,9 @@ const Upload = () => {
                         <option value="cs">Computer Science</option>
                         <option value="eco">Economics</option>
                         <option value="web">Web Development</option>
+                        <option value="psy">Psychology</option>
                     </select>
+
                 </div>
 
                 <div className={styles.formGroup}>
