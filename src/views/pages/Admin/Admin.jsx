@@ -22,7 +22,7 @@ const AdminPanel = () => {
             const data = snapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
-                status: doc.data().status || "Pending" // Default to "Pending"
+                status: doc.data().status || "Pending" 
             }));
             setSummaries(data);
         } catch (err) {
