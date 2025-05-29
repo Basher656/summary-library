@@ -8,6 +8,7 @@ import { db, auth } from "../../../firebase";
 import { useLocation, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import jsPDF from "jspdf";
+import alefFont from "../../../hebrew-Font";
 
 const Courses = () => {
     const location = useLocation();
@@ -22,15 +23,64 @@ const Courses = () => {
 
     const handleDownloadTextAsPDF = (title, description, summaryId) => {
         logDownload(summaryId);
-        const doc = new jsPDF();
-        doc.setFont("Helvetica");
-        doc.setFontSize(16);
-        doc.text(title, 10, 20);
-        doc.setFontSize(12);
-        const lines = doc.splitTextToSize(description, 180);
-        doc.text(lines, 10, 30);
+
+        const doc = new jsPDF({
+            orientation: "portrait",
+            unit: "mm",
+            format: "a4"
+        });
+
+        const isHebrew = (text) => /[\u0590-\u05FF]/.test(text);
+
+        // הטמעת פונט Alef לעברית
+        doc.addFileToVFS("Alef-Regular.ttf", alefFont);
+        doc.addFont("Alef-Regular.ttf", "Alef", "normal");
+        doc.setFont("Alef");
+
+        const titleIsHebrew = isHebrew(title);
+        const finalTitle = titleIsHebrew ? title.split('').reverse().join('') : title;
+        const titleX = titleIsHebrew ? 200 : 20;
+        const titleAlign = titleIsHebrew ? "right" : "left";
+
+        // כותרת
+        doc.setFontSize(18);
+        doc.text(finalTitle, titleX, 25, { align: titleAlign });
+
+        // קו מפריד
+        doc.setLineWidth(0.3);
+        doc.line(20, 30, 190, 30);
+
+        // טקסט הסיכום
+        doc.setFontSize(13);
+        const lines = description.split('\n').map(line => {
+            const splitLines = doc.splitTextToSize(line, 160);
+            return splitLines.map(l =>
+                isHebrew(l) ? l.split('').reverse().join('') : l
+            );
+        }).flat();
+
+        let y = 40;
+        for (let line of lines) {
+            const isHeb = isHebrew(line);
+            const x = isHeb ? 200 : 20;
+            const align = isHeb ? "right" : "left";
+
+            doc.text(line, x, y, { align });
+            y += 8;
+
+            if (y > 280) {
+                doc.addPage();
+                doc.setFont("Alef");
+                doc.setFontSize(13);
+                y = 30;
+            }
+        }
+
         doc.save(`${title}.pdf`);
     };
+
+
+
 
     const handleDelete = async (id) => {
         if (!window.confirm("Are you sure you want to delete this summary?")) return;
