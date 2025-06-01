@@ -32,7 +32,6 @@ const Courses = () => {
 
         const isHebrew = (text) => /[\u0590-\u05FF]/.test(text);
 
-        // הטמעת פונט Alef לעברית
         doc.addFileToVFS("Alef-Regular.ttf", alefFont);
         doc.addFont("Alef-Regular.ttf", "Alef", "normal");
         doc.setFont("Alef");
@@ -42,15 +41,12 @@ const Courses = () => {
         const titleX = titleIsHebrew ? 200 : 20;
         const titleAlign = titleIsHebrew ? "right" : "left";
 
-        // כותרת
         doc.setFontSize(18);
         doc.text(finalTitle, titleX, 25, { align: titleAlign });
 
-        // קו מפריד
         doc.setLineWidth(0.3);
         doc.line(20, 30, 190, 30);
 
-        // טקסט הסיכום
         doc.setFontSize(13);
         const lines = description.split('\n').map(line => {
             const splitLines = doc.splitTextToSize(line, 160);
