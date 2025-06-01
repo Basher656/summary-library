@@ -88,7 +88,7 @@ const Upload = () => {
                 {error && <p className={styles.error}>{error}</p>}
                 {success && <p className={styles.success}>Summary saved!</p>}
 
-                <button type="submit" className={styles.submitBtn}>Save</button>
+                <button type="submit" className={styles.submitBtn}>Submit Summary</button>
             </form>
         </div>
     );

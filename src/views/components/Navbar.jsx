@@ -18,7 +18,7 @@ function Navbar() {
                     setUser({ ...currentUser, role: userData.role || "user" });
                 } catch (error) {
                     console.error("Failed to fetch user role:", error);
-                    setUser({ ...currentUser, role: "user" }); // fallback
+                    setUser({ ...currentUser, role: "user" }); 
                 }
             } else {
                 setUser(null);

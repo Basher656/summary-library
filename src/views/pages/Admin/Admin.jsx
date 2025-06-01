@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Admin.module.css";
 import { FileText, Check, X, Eye } from "lucide-react";
-import {
-    collection,
-    getDocs,
-    updateDoc,
-    doc
-} from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 import { db, auth } from "../../../firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 
@@ -22,7 +17,7 @@ const AdminPanel = () => {
             const data = snapshot.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data(),
-                status: doc.data().status || "Pending" 
+                status: doc.data().status || "Pending"
             }));
             setSummaries(data);
         } catch (err) {
