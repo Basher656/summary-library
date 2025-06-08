@@ -38,8 +38,10 @@ Summary Library היא מערכת אינטרנטית המיועדת לסטודנ
 
 1. יש לשכפל את הריפוזיטורי:
 
-```bash
+
 git clone https://github.com/Basher656/summary-library1.git
+
+
 
 
 </p>
