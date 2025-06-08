@@ -1,12 +1,45 @@
-# React + Vite
+<p dir="rtl">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Summary Library
 
-Currently, two official plugins are available:
+פרויקט גמר בקורס Front-End – מערכת שיתופית לניהול סיכומי שיעורים עבור סטודנטים.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## תיאור הפרויקט
 
-## Expanding the ESLint configuration
+Summary Library היא מערכת אינטרנטית המיועדת לסטודנטים, המאפשרת חיפוש, ניהול, והעלאת סיכומי שיעורים לפי קורסים.  
+המערכת פותחה מתוך מטרה לספק פתרון יעיל לניהול ידע לימודי, תוך שימת דגש על חוויית משתמש נוחה, עיצוב רספונסיבי, ונגישות מלאה מכל מכשיר.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## יכולות עיקריות
+
+- חיפוש סיכומים לפי קורסים
+- טופס ידידותי להעלאת סיכומים
+- לוח בקרה אישי לניהול הסיכומים שהמשתמש העלה
+- ממשק מנהלים (Admin Panel) לאישור, עריכה ומחיקה של סיכומים
+- דף עזרה והגדרות עם תמיכה טכנית
+- התאמה מלאה לדסקטופ, מובייל וטאבלט
+
+## טכנולוגיות בשימוש
+
+- React – ספריית JavaScript לפיתוח ממשקי משתמש
+- React Router DOM – ניתוב בין עמודים
+- Firebase – ניהול משתמשים, מסד נתונים ואחסון קבצים
+- TailwindCSS – עיצוב מודרני ואחיד
+- Recharts – הצגת גרפים סטטיסטיים בלוח הבקרה
+
+## מבנה הקוד
+
+- `App.jsx` – קובץ ראשי שמכיל את הגדרות הנתיבים (Routes) של האפליקציה
+- `Navbar.jsx` – סרגל ניווט קבוע שמופיע בכל עמוד
+- `components/` – תיקייה הכוללת קומפוננטים חוזרים
+- `pages/` – תיקייה עם דפי המערכת (Home, Courses, Upload, Dashboard, Admin, Help)
+- `docs/` – שרטוטי Wireframe, תסריטי שימוש ותיעוד
+
+## התקנה והרצה מקומית
+
+1. יש לשכפל את הריפוזיטורי:
+
+```bash
+git clone https://github.com/Basher656/summary-library1.git
+
+
+</p>
